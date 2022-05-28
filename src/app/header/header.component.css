@@ -1,4 +1,7 @@
 .highlight{
   background-color:darkgreen;
-  color: white;
+  color: white !important;
+  border-radius: 3px;
+  padding: .2rem 1rem .5rem 1rem;
+  margin-left: .5rem;
 }

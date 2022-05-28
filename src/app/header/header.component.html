@@ -12,10 +12,11 @@
       type="text"
       placeholder="Keyword"
       [(ngModel)]="keyword"
+      (keyup)="chkKeyword($event)"
     />
-    <button class="btn btn-sm btn-primary" (click)="search($event)">
+    <button class="btn btn-sm btn-primary" (click)="search($event)" >
       <i class="ion-search"></i>
     </button>
-    <span>{{ fontSize }}{{ keyword }}</span>
+    <span *ngIf="isShowHint" class="highlight">please input keyword</span>
   </div>
 </nav>

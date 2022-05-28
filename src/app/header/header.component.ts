@@ -9,13 +9,20 @@ export class HeaderComponent implements OnInit {
   keyword = '';
   isHighlight = false;
   fontSize = 1; //rem
+  isShowHint = false;
   constructor() {}
 
   ngOnInit(): void {}
 
   search($event: MouseEvent): void {
-    console.log($event);
-    this.isHighlight=!this.isHighlight;
-    ++this.fontSize;
+    // console.log($event);
+    // this.isHighlight=!this.isHighlight;
+    // ++this.fontSize;
+    this.isShowHint = this.keyword === '';
+  }
+
+  chkKeyword($event: KeyboardEvent): void {
+    // console.log($event);
+    this.isShowHint = this.isShowHint ? false : this.isShowHint;
   }
 }
