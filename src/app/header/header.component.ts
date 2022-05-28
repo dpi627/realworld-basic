@@ -1,3 +1,4 @@
+import { ArticlesService } from './../articles.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   isHighlight = false;
   fontSize = 1; //rem
   isShowHint = false;
-  constructor() {}
+  constructor(private articlesService: ArticlesService) {}
 
   ngOnInit(): void {}
 
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
     // this.isHighlight=!this.isHighlight;
     // ++this.fontSize;
     this.isShowHint = this.keyword === '';
-    this.keywordChange.emit(this.keyword); //emit data to event
+    this.articlesService.searchArticles(this.keyword);
   }
 
   chkKeyword($event: KeyboardEvent): void {
