@@ -1,7 +1,9 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs';
+import {map}  from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticlesService {
   oriArticles = [
@@ -64,7 +66,21 @@ export class ArticlesService {
 
   lstArticles = this.oriArticles;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {}
+
+  loadArticle() {
+    this.httpClient
+      .get('http://conduit.productionready.io/api/articles')
+      .subscribe((response: any) => {
+        this.lstArticles = response.articles;
+      });
+  }
+
+  getArticles(): Observable<any[]> {
+    return this.httpClient
+      .get('http://conduit.productionready.io/api/articles')
+      .pipe(map((response: any) => response.articles));
+  }
 
   searchArticles(keyowrd: string) {
     if (keyowrd) {
